@@ -11,7 +11,7 @@ The main goal here is to set up and configure Travis CI on a nontrivial app.
 
 Just run
 ```
-mvn jetty:run
+gradle jettyRun
 ```
 to launch it
 and then make a request to 
