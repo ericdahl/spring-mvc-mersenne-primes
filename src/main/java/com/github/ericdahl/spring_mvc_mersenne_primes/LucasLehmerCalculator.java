@@ -1,5 +1,6 @@
 package com.github.ericdahl.spring_mvc_mersenne_primes;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
@@ -9,6 +10,7 @@ public class LucasLehmerCalculator {
 
     private final BigInteger TWO = new BigInteger("2");
 
+    @Cacheable("mersennePrimes")
     public PrimeResult checkPrimality(int n) {
 
         BigInteger s = new BigInteger("4");
