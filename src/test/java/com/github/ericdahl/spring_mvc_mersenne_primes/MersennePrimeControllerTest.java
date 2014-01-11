@@ -38,4 +38,11 @@ public class MersennePrimeControllerTest {
                 .andExpect(jsonPath("$.n").value(2))
                 .andExpect(jsonPath("$.prime").value(true));
     }
+
+    @Test
+    public void setsCacheControlHeader() throws Exception {
+        standaloneSetup(controller).build().perform(get("/2"))
+                .andExpect(status().isOk())
+                .andExpect(header().string("Cache-Control", "max-age=31536000"));
+    }
 }

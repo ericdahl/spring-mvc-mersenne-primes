@@ -7,9 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.support.WebContentGenerator;
+
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
-public class MersennePrimeController {
+public class MersennePrimeController extends WebContentGenerator {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MersennePrimeController.class);
 
@@ -21,8 +24,11 @@ public class MersennePrimeController {
     }
 
     @RequestMapping("/{n}")
-    public @ResponseBody PrimeResult checkPrimality(@PathVariable int n) {
+    public @ResponseBody PrimeResult checkPrimality(@PathVariable int n, HttpServletResponse response) {
         LOGGER.info("Processing request for n [{}]", n);
-        return calculator.checkPrimality(n);
+
+        final PrimeResult result = calculator.checkPrimality(n);
+        cacheForSeconds(response, 3600 * 24 * 365);
+        return result;
     }
 }
