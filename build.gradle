@@ -5,7 +5,7 @@ apply plugin: 'cobertura'
 apply plugin: 'coveralls'
 cobertura.coverageFormats = ['html', 'xml']
 
-def springVersion = "4.0.0.RELEASE"
+def springVersion = "4.0.2.RELEASE"
 
 repositories {
     mavenCentral()
