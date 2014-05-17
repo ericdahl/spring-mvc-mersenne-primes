@@ -16,4 +16,9 @@ public class PrimeResult {
     public boolean isPrime() {
         return prime;
     }
+
+    @Override
+    public String toString() {
+        return String.format("[%d] -> [%s]", n, prime);
+    }
 }
